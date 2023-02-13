@@ -13,7 +13,29 @@
     <title>Library App</title>
 </head>
 <body>
-
+    <div id="form-wrapper">
+        <form>
+            <div class="input-wrapper">
+                <input id="title" name="title" type="text" required>
+                <label for="title">Title</label>
+            </div>
+            <div class="input-wrapper">
+                <input id="author" name="author" type="text" required>
+                <label for="author">Author</label>
+            </div>
+            <div class="input-wrapper">
+                <input id="number-of-pages" name="number-of-pages" type="number" required>
+                <label for="number-of-pages">Number of pages</label>
+            </div>
+            <div class="input-wrapper">
+                <input id="read-status" name="read-status" type="checkbox">
+                <label for="read-status">Book has been read?</label>
+            </div>
+            <div class="input-wrapper">
+                <input id="submit-book" name="submit-book" type="submit">
+            </div>
+        </form>
+    </div>
     <script src="library.js"></script>
 </body>
 </html>

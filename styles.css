@@ -1,3 +1,17 @@
 :root {
     font-family: Roboto;
 }
+
+#form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-wrapper {
+    padding: 2px;
+}
+
+.input-wrapper input {
+    margin: 0;
+}
