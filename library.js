@@ -1,17 +1,19 @@
 "use strict"
 
 const form = document.getElementById('book-submission');
-
-
 form.addEventListener("submit", addBookToLibrary, true);
 
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
-  this.title = name;
+  this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
+  if (read) {
+    this.read = true;
+  } else {
+    this.read = false;
+  }
 }
 
 function addBookToLibrary(event) {
@@ -23,4 +25,5 @@ function addBookToLibrary(event) {
   let readStatus = formData.get('read-status');
   let newBook = new Book(title, author, numberOfPages, readStatus);
   myLibrary.push(newBook);
+  form.reset();
 }
