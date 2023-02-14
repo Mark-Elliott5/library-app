@@ -42,15 +42,15 @@ function addBookToLibrary(event) {
   myLibrary.push(newBook);
   form.reset();
   shelveBook();
-  form.classList.add('hidden');
+  formWrapper.classList.add('hidden');
 }
 
 function shelveBook() {
-  for (let i = 0; i < myLibrary.length; i++) {
-    const title = myLibrary[i].title;
-    const author = myLibrary[i].author;
-    const numberOfPages = myLibrary[i].pages;
-    const readStatus = myLibrary[i].read;
+    const book = myLibrary[myLibrary.length-1];
+    const title = book.title;
+    const author = book.author;
+    const numberOfPages = book.pages;
+    const readStatus = book.read;
     const bookToBeShelved = document.createElement('div');
     bookToBeShelved.classList.add('book');
     const bookDetails = document.createElement('ul');
@@ -68,5 +68,4 @@ function shelveBook() {
     bookDetails.appendChild(bookRead);
     bookToBeShelved.appendChild(bookDetails);
     shelf.appendChild(bookToBeShelved)
-  }
 }
