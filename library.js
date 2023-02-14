@@ -3,6 +3,8 @@
 const form = document.getElementById('book-submission');
 form.addEventListener("submit", addBookToLibrary, true);
 
+const shelf = document.getElementById('shelf');
+
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -18,12 +20,39 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(event) {
   event.preventDefault();
-  let formData = new FormData(event.target);
-  let title = formData.get('title');
-  let author = formData.get('author');
-  let numberOfPages = formData.get('number-of-pages');
-  let readStatus = formData.get('read-status');
-  let newBook = new Book(title, author, numberOfPages, readStatus);
+  const formData = new FormData(event.target);
+  const title = formData.get('title');
+  const author = formData.get('author');
+  const numberOfPages = formData.get('number-of-pages');
+  const readStatus = formData.get('read-status');
+  const newBook = new Book(title, author, numberOfPages, readStatus);
   myLibrary.push(newBook);
   form.reset();
+  shelveBook();
+}
+
+function shelveBook() {
+  for (let i = 0; i < myLibrary.length; i++) {
+    const title = myLibrary[i].title;
+    const author = myLibrary[i].author;
+    const numberOfPages = myLibrary[i].pages;
+    const readStatus = myLibrary[i].read;
+    const bookToBeShelved = document.createElement('div');
+    bookToBeShelved.classList.add('book');
+    const bookDetails = document.createElement('ul');
+    const bookTitle = document.createElement('li');
+    bookTitle.innerText = title;
+    const bookAuthor = document.createElement('li');
+    bookAuthor.innerText = author;
+    const bookPages = document.createElement('li');
+    bookPages.innerText = numberOfPages;
+    const bookRead = document.createElement('li');
+    bookRead.innerText = readStatus;
+    bookDetails.appendChild(bookTitle);
+    bookDetails.appendChild(bookAuthor);
+    bookDetails.appendChild(bookPages);
+    bookDetails.appendChild(bookRead);
+    bookToBeShelved.appendChild(bookDetails);
+    shelf.appendChild(bookToBeShelved)
+  }
 }
