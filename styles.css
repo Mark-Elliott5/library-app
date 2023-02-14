@@ -19,6 +19,10 @@ body {
     height: 100%
 }
 
+.hidden {
+    visibility: hidden !important;
+}
+
 .input-wrapper {
     padding: 2px;
 }

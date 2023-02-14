@@ -3,6 +3,13 @@
 const form = document.getElementById('book-submission');
 form.addEventListener("submit", addBookToLibrary, true);
 
+const formWrapper = document.getElementById('form-wrapper');
+
+const newBook = document.getElementById('new-book');
+newBook.addEventListener('click', () => {
+  formWrapper.classList.remove('hidden');
+})
+
 const shelf = document.getElementById('shelf');
 
 let myLibrary = [];
@@ -29,6 +36,7 @@ function addBookToLibrary(event) {
   myLibrary.push(newBook);
   form.reset();
   shelveBook();
+  form.classList.add('hidden');
 }
 
 function shelveBook() {
@@ -47,7 +55,7 @@ function shelveBook() {
     const bookPages = document.createElement('li');
     bookPages.innerText = numberOfPages;
     const bookRead = document.createElement('li');
-    bookRead.innerText = readStatus;
+    bookRead.innerText = `${readStatus ? `Read` : `Unread`}`;
     bookDetails.appendChild(bookTitle);
     bookDetails.appendChild(bookAuthor);
     bookDetails.appendChild(bookPages);
