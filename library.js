@@ -1,9 +1,15 @@
 "use strict"
 
 const form = document.getElementById('book-submission');
-form.addEventListener("submit", addBookToLibrary, true);
+form.addEventListener('submit', addBookToLibrary);
+form.addEventListener('click', (e) => {
+  e.stopPropagation();
+})
 
 const formWrapper = document.getElementById('form-wrapper');
+formWrapper.addEventListener('click', () => {
+  formWrapper.classList.add('hidden');
+})
 
 const newBook = document.getElementById('new-book');
 newBook.addEventListener('click', () => {
