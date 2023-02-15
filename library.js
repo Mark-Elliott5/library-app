@@ -18,6 +18,11 @@ newBook.addEventListener('click', () => {
 
 const shelf = document.getElementById('shelf');
 
+const booksRead = document.getElementById('books-read');
+const booksUnread = document.getElementById('books-unread');
+const totalBooks = document.getElementById('total-books');
+const pagesRead = document.getElementById('pages-read');
+
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -55,9 +60,13 @@ function shelveBook() {
     bookToBeShelved.classList.add('book');
     if (readStatus) {
       bookToBeShelved.classList.add('read');
+      booksRead.textContent = parseInt(booksRead.textContent, 10) + 1;
+      pagesRead.textContent = parseInt(pagesRead.textContent, 10) + parseInt(numberOfPages, 10);
     } else {
       bookToBeShelved.classList.add('unread');
+      booksUnread.textContent = parseInt(booksUnread.textContent, 10) + 1;
     }
+    totalBooks.textContent = parseInt(totalBooks.textContent, 10) + 1;
     const bookDetails = document.createElement('ul');
     const bookTitle = document.createElement('li');
     bookTitle.innerText = title;
