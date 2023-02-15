@@ -53,6 +53,11 @@ function shelveBook() {
     const readStatus = book.read;
     const bookToBeShelved = document.createElement('div');
     bookToBeShelved.classList.add('book');
+    if (readStatus) {
+      bookToBeShelved.classList.add('read');
+    } else {
+      bookToBeShelved.classList.add('unread');
+    }
     const bookDetails = document.createElement('ul');
     const bookTitle = document.createElement('li');
     bookTitle.innerText = title;

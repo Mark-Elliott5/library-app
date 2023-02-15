@@ -14,24 +14,26 @@
 </head>
 
 <body>
-    <button id="new-book">New book</button>
+    <div>
+        <button id="new-book">New book</button>
+    </div>
     <div id="form-wrapper" class="hidden">
         <form id="book-submission">
             <div class="input-wrapper">
-                <input id="title" name="title" type="text" required>
-                <label for="title">Title</label>
+                <input id="title" name="title" type="text" placeholder="Title" required>
+                <!-- <label for="title">Title</label> -->
             </div>
             <div class="input-wrapper">
-                <input id="author" name="author" type="text" required>
-                <label for="author">Author</label>
+                <input id="author" name="author" type="text" placeholder="Author" required>
+                <!-- <label for="author">Author</label> -->
             </div>
             <div class="input-wrapper">
-                <input id="number-of-pages" name="number-of-pages" type="number" required>
-                <label for="number-of-pages">Number of pages</label>
+                <input id="number-of-pages" name="number-of-pages" type="number" placeholder="Pages" required>
+                <!-- <label for="number-of-pages">Number of pages</label> -->
             </div>
             <div class="input-wrapper">
                 <input id="read-status" name="read-status" type="checkbox">
-                <label for="read-status">Book has been read?</label>
+                <label for="read-status">Book has been read</label>
             </div>
             <div class="input-wrapper">
                 <button id="submit-book" name="submit-book" type="submit">
