@@ -61,12 +61,16 @@ function shelveBook() {
     const bookDetails = document.createElement('ul');
     const bookTitle = document.createElement('li');
     bookTitle.innerText = title;
+    bookTitle.style = 'grid-column: 2;'
     const bookAuthor = document.createElement('li');
     bookAuthor.innerText = author;
+    bookAuthor.style = 'grid-column: 3;'
     const bookPages = document.createElement('li');
     bookPages.innerText = numberOfPages;
+    bookPages.style = 'grid-column: 4;'
     const bookRead = document.createElement('li');
     bookRead.innerText = `${readStatus ? `Read` : `Unread`}`;
+    bookRead.style = 'grid-column: 5;'
     bookDetails.appendChild(bookTitle);
     bookDetails.appendChild(bookAuthor);
     bookDetails.appendChild(bookPages);
