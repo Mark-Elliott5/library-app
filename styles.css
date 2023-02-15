@@ -7,9 +7,13 @@ body {
     margin: 0;
     height: 100vh;
     color: white;
+}
+
+main {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    /* padding: 50px; */
+    height: 90vh;
+    margin: 35px;
 }
 
 #form-wrapper {
@@ -26,7 +30,6 @@ body {
 #shelf {
     grid-column: 1;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     border: 1px solid white;
     overflow-y: auto;
@@ -48,6 +51,15 @@ body {
 #tool-box {
     grid-column: 2;
     border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#tools {
+    display: flex;
+    flex-direction: column;
 }
 
 ul {
