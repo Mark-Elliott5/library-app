@@ -38,6 +38,11 @@ footer {
     text-align: center;
 }
 
+.github-link {
+    width: 16px;
+    margin-left: 5px;
+}
+
 #shelf {
     grid-column: 1;
     display: flex;
@@ -122,7 +127,7 @@ button.delete-button {
     padding: 0;
 }
 
-img {
+.books img {
     pointer-events: none;
     filter: invert();
 }
