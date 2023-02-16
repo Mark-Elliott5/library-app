@@ -3,7 +3,7 @@
 }
 
 body {
-    background: black;
+    background: linear-gradient(180deg, #424242, #000000);
     margin: 0;
     height: 100vh;
     color: white;
