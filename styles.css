@@ -127,7 +127,7 @@ button.delete-button {
     padding: 0;
 }
 
-.books img {
+button img {
     pointer-events: none;
     filter: invert();
 }
