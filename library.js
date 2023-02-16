@@ -106,8 +106,9 @@ function shelveBook() {
 }
 
 function removeBook(e) {
-  let bookIndex = e.target.parentNode.parentNode.parentNode.id;
-  let bookToBeDeleted = myLibrary[bookIndex];
+  const bookId = e.target.parentNode.parentNode.parentNode.id;
+  const bookIndex = myLibrary.findIndex((element) => element.id = bookId);
+  const bookToBeDeleted = myLibrary[bookIndex];
   if (bookToBeDeleted.read) {
     booksRead.textContent = parseInt(booksRead.textContent, 10) - 1;
     pagesRead.textContent = parseInt(pagesRead.textContent, 10) - parseInt(bookToBeDeleted.pages, 10);
@@ -116,5 +117,5 @@ function removeBook(e) {
   }
   totalBooks.textContent = parseInt(totalBooks.textContent, 10) - 1;
   e.target.parentNode.parentNode.parentNode.remove();
-  delete myLibrary[bookIndex];
+  myLibrary.splice(bookIndex, 1);
 }
