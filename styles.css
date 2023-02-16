@@ -13,7 +13,7 @@ main {
     display: grid;
     grid-template-columns: 3fr 1fr;
     height: 90vh;
-    margin: 35px;
+    margin: 10px 35px 35px 35px;
 }
 
 #form-wrapper {
@@ -27,6 +27,12 @@ main {
     height: 100vh;
 }
 
+header {
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
 #shelf {
     grid-column: 1;
     display: flex;
@@ -36,7 +42,7 @@ main {
     height: auto;
 }
 
-#header {
+#shelf-header {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     text-align: center;
