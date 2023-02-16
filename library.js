@@ -74,10 +74,14 @@ function shelveBook() {
 
     const deleteButtonWrapper = document.createElement('li');
     const deleteButton = document.createElement('button');
-    deleteButton.name = 'delete';
+    deleteButton.classList.add('delete-button');
     deleteButton.addEventListener('click', removeBook);
     deleteButtonWrapper.appendChild(deleteButton);
     deleteButtonWrapper.style= 'grid-column: 1;';
+
+    const closeIcon = document.createElement('img');
+    closeIcon.src = 'images/close-icon.svg';
+    deleteButton.appendChild(closeIcon);
 
     const bookTitle = document.createElement('li');
     bookTitle.innerText = title;

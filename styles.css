@@ -73,6 +73,18 @@ ul {
     gap: clamp(5px, 10%, 100px);
 }
 
+button.delete-button {
+    background: none;
+    width: 25px;
+    border: none;
+    padding: 0;
+}
+
+img {
+    pointer-events: none;
+    filter: invert();
+}
+
 .hidden {
     visibility: hidden !important;
 }
