@@ -36,6 +36,36 @@ main {
     height: auto;
 }
 
+#header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+    column-gap: 0px;
+    border-bottom: 1px solid white;
+}
+
+#header:nth-child(odd) span {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+#title-cell {
+    grid-column: 2;
+}
+
+#author-cell {
+    grid-column: 3;
+}
+
+#pages-cell {
+    grid-column: 4;
+}
+
+#status-cell {
+    grid-column: 5;
+}
+
+
 .book {
     background-repeat: no-repeat;
 }
@@ -55,6 +85,7 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 10px;
 }
 
 #tools {
