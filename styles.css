@@ -7,6 +7,7 @@ body {
     margin: 0;
     height: 100vh;
     color: white;
+    overflow-x: hidden;
 }
 
 main {
@@ -60,7 +61,7 @@ footer {
     border-bottom: 1px solid white;
 }
 
-#header:nth-child(odd) span {
+#shelf-header:nth-child(odd) span {
     border-left: 1px solid white;
     border-right: 1px solid white;
 }
