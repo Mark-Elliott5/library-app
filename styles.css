@@ -88,11 +88,11 @@ footer {
 }
 
 .book.unread{
-    background: url(images/bookspineunread.svg);
+    background-image: url(images/bookspineunread.svg);
 }
 
 .book.read{
-    background: url(images/bookspineread.svg);
+    background-image: url(images/bookspineread.svg);
 }
 
 #tool-box {
