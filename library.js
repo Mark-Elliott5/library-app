@@ -115,11 +115,19 @@ function createDiv(book) {
   bookRead.innerText = `${book.read ? `Read` : `Unread`}`;
   bookRead.style = 'grid-column: 5;';
 
+  const readStatusButtonWrapper = document.createElement('li');
+  const readStatusButton = document.createElement('button');
+  readStatusButtonWrapper.appendChild(readStatusButton);
+  readStatusButton.innerText = 'Toggle Read Status';
+  readStatusButton.style = 'grid-column: 6;';
+  readStatusButton.addEventListener('click', changeReadStatus);
+
   bookDetails.appendChild(deleteButtonWrapper);
   bookDetails.appendChild(bookTitle);
   bookDetails.appendChild(bookAuthor);
   bookDetails.appendChild(bookPages);
   bookDetails.appendChild(bookRead);
+  bookDetails.appendChild(readStatusButtonWrapper);
   bookToBeShelved.appendChild(bookDetails);
   shelf.appendChild(bookToBeShelved)
 }
@@ -128,5 +136,12 @@ function removeBook(e) {
   const bookId = e.target.parentNode.parentNode.parentNode.id;
   const bookIndex = myLibrary.findIndex((element) => element.id == bookId);
   myLibrary.splice(bookIndex, 1);
+  shelveBooks();
+}
+
+function changeReadStatus(e) {
+  const bookId = e.target.parentNode.parentNode.parentNode.id;
+  const bookIndex = myLibrary.findIndex((element) => element.id == bookId);
+  myLibrary[bookIndex].read = !myLibrary[bookIndex].read;
   shelveBooks();
 }
