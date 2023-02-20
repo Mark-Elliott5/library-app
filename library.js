@@ -26,7 +26,7 @@ const pagesRead = document.getElementById('pages-read');
 let myLibrary = [];
 let bookIncrement = 0;
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -35,6 +35,7 @@ function Book(title, author, pages, read) {
   } else {
     this.read = false;
   }
+  this.id = id;
 }
 
 function addBookToLibrary(event) {
@@ -44,82 +45,89 @@ function addBookToLibrary(event) {
   const author = formData.get('author');
   const numberOfPages = formData.get('number-of-pages');
   const readStatus = formData.get('read-status');
-  const newBook = new Book(title, author, numberOfPages, readStatus);
+  const id = bookIncrement;
+  const newBook = new Book(title, author, numberOfPages, readStatus, id);
+  bookIncrement += 1;
   myLibrary.push(newBook);
   form.reset();
-  shelveBook();
+  shelveBooks();
   formWrapper.classList.add('hidden');
 }
 
-function shelveBook() {
-    const book = myLibrary[myLibrary.length-1];
-    const title = book.title;
-    const author = book.author;
-    const numberOfPages = book.pages;
-    const readStatus = book.read;
-    const bookToBeShelved = document.createElement('div');
-    bookToBeShelved.id = `${bookIncrement}`;
-    bookToBeShelved.classList.add('book');
-    if (readStatus) {
-      bookToBeShelved.classList.add('read');
-      booksRead.textContent = parseInt(booksRead.textContent, 10) + 1;
-      pagesRead.textContent = parseInt(pagesRead.textContent, 10) + parseInt(numberOfPages, 10);
-    } else {
-      bookToBeShelved.classList.add('unread');
-      booksUnread.textContent = parseInt(booksUnread.textContent, 10) + 1;
-    }
-    totalBooks.textContent = parseInt(totalBooks.textContent, 10) + 1;
+function shelveBooks() {
+  shelf.innerHTML = 
+    `<div id="shelf-header">
+    <span id="title-cell">Title</span>
+    <span id="author-cell">Author</span>
+    <span id="pages-cell">Pages</span>
+    <span id="status-cell">Status</span>
+    </div>`;
+  booksRead.textContent = 0;
+  booksUnread.textContent = 0;
+  pagesRead.textContent = 0;
+  totalBooks.textContent = 0;
+  for (let i = 0; i < myLibrary.length; i++) {
+    createDiv(myLibrary[i]);
+  }
+}
 
-    const bookDetails = document.createElement('ul');
+function createDiv(book) {
+  const bookToBeShelved = document.createElement('div');
+  bookToBeShelved.id = `${book.id}`;
+  bookToBeShelved.classList.add('book');
+  if (book.read) {
+    bookToBeShelved.classList.add('read');
+    booksRead.textContent = parseInt(booksRead.textContent, 10) + 1;
+    pagesRead.textContent = parseInt(pagesRead.textContent, 10) + parseInt(book.pages, 10);
+  } else {
+    bookToBeShelved.classList.add('unread');
+    booksUnread.textContent = parseInt(booksUnread.textContent, 10) + 1;
+  }
 
-    const deleteButtonWrapper = document.createElement('li');
-    const deleteButton = document.createElement('button');
-    deleteButton.classList.add('delete-button');
-    deleteButton.addEventListener('click', removeBook);
-    deleteButtonWrapper.appendChild(deleteButton);
-    deleteButtonWrapper.style= 'grid-column: 1;';
+  totalBooks.textContent = parseInt(totalBooks.textContent, 10) + 1;
 
-    const closeIcon = document.createElement('img');
-    closeIcon.src = 'images/close-icon.svg';
-    deleteButton.appendChild(closeIcon);
+  const bookDetails = document.createElement('ul');
 
-    const bookTitle = document.createElement('li');
-    bookTitle.innerText = title;
-    bookTitle.style = 'grid-column: 2;';
+  const deleteButtonWrapper = document.createElement('li');
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('delete-button');
+  deleteButton.addEventListener('click', removeBook);
+  deleteButtonWrapper.appendChild(deleteButton);
+  deleteButtonWrapper.style= 'grid-column: 1;';
 
-    const bookAuthor = document.createElement('li');
-    bookAuthor.innerText = author;
-    bookAuthor.style = 'grid-column: 3;';
+  const closeIcon = document.createElement('img');
+  closeIcon.src = 'images/close-icon.svg';
+  deleteButton.appendChild(closeIcon);
 
-    const bookPages = document.createElement('li');
-    bookPages.innerText = numberOfPages;
-    bookPages.style = 'grid-column: 4;';
+  const bookTitle = document.createElement('li');
+  bookTitle.innerText = book.title;
+  bookTitle.style = 'grid-column: 2;';
 
-    const bookRead = document.createElement('li');
-    bookRead.innerText = `${readStatus ? `Read` : `Unread`}`;
-    bookRead.style = 'grid-column: 5;';
+  const bookAuthor = document.createElement('li');
+  bookAuthor.innerText = book.author;
+  bookAuthor.style = 'grid-column: 3;';
 
-    bookDetails.appendChild(deleteButtonWrapper);
-    bookDetails.appendChild(bookTitle);
-    bookDetails.appendChild(bookAuthor);
-    bookDetails.appendChild(bookPages);
-    bookDetails.appendChild(bookRead);
-    bookToBeShelved.appendChild(bookDetails);
-    shelf.appendChild(bookToBeShelved)
-    bookIncrement += 1;
+  const bookPages = document.createElement('li');
+  bookPages.innerText = book.pages;
+  bookPages.style = 'grid-column: 4;';
+
+  const bookRead = document.createElement('li');
+  bookRead.innerText = `${book.read ? `Read` : `Unread`}`;
+  bookRead.style = 'grid-column: 5;';
+
+  bookDetails.appendChild(deleteButtonWrapper);
+  bookDetails.appendChild(bookTitle);
+  bookDetails.appendChild(bookAuthor);
+  bookDetails.appendChild(bookPages);
+  bookDetails.appendChild(bookRead);
+  bookToBeShelved.appendChild(bookDetails);
+  shelf.appendChild(bookToBeShelved)
 }
 
 function removeBook(e) {
   const bookId = e.target.parentNode.parentNode.parentNode.id;
   const bookIndex = myLibrary.findIndex((element) => element.id = bookId);
   const bookToBeDeleted = myLibrary[bookIndex];
-  if (bookToBeDeleted.read) {
-    booksRead.textContent = parseInt(booksRead.textContent, 10) - 1;
-    pagesRead.textContent = parseInt(pagesRead.textContent, 10) - parseInt(bookToBeDeleted.pages, 10);
-  } else {
-    booksUnread.textContent = parseInt(booksUnread.textContent, 10) - 1;
-  }
-  totalBooks.textContent = parseInt(totalBooks.textContent, 10) - 1;
-  e.target.parentNode.parentNode.parentNode.remove();
   myLibrary.splice(bookIndex, 1);
+  shelveBooks();
 }
