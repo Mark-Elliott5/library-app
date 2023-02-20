@@ -93,7 +93,7 @@ function createDiv(book) {
   deleteButton.classList.add('delete-button');
   deleteButton.addEventListener('click', removeBook);
   deleteButtonWrapper.appendChild(deleteButton);
-  deleteButtonWrapper.style= 'grid-column: 1;';
+  deleteButtonWrapper.style = 'grid-column: 1;';
 
   const closeIcon = document.createElement('img');
   closeIcon.src = 'images/close-icon.svg';
@@ -126,8 +126,7 @@ function createDiv(book) {
 
 function removeBook(e) {
   const bookId = e.target.parentNode.parentNode.parentNode.id;
-  const bookIndex = myLibrary.findIndex((element) => element.id = bookId);
-  const bookToBeDeleted = myLibrary[bookIndex];
+  const bookIndex = myLibrary.findIndex((element) => element.id == bookId);
   myLibrary.splice(bookIndex, 1);
   shelveBooks();
 }
