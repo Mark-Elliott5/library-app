@@ -47,7 +47,7 @@ function addBookToLibrary(event) {
   const readStatus = formData.get('read-status');
   const id = bookIncrement;
   const newBook = new Book(title, author, numberOfPages, readStatus, id);
-  bookIncrement += 1;
+  bookIncrement++;
   myLibrary.push(newBook);
   form.reset();
   shelveBooks();
