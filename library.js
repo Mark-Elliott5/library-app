@@ -26,16 +26,71 @@ const pagesRead = document.getElementById('pages-read');
 let myLibrary = [];
 let bookIncrement = 0;
 
-function Book(title, author, pages, read, id) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  if (read) {
-    this.read = true;
-  } else {
-    this.read = false;
+// function Book(title, author, pages, read, id) {
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   if (read) {
+//     this.read = true;
+//   } else {
+//     this.read = false;
+//   }
+//   this.id = id;
+// }
+
+class Book {
+
+  constructor(title, author, pages, read, id) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.id = id;
   }
-  this.id = id;
+
+  get title() {
+    return this._title;
+  }
+
+  set title(value) {
+    this._title = value;
+  }
+
+  get author() {
+    return this._author;
+  }
+
+  set author(value) {
+    this._author = value;
+  }
+
+  get pages() {
+    return this._pages;
+  }
+
+  set pages(value) {
+    this._pages = value;
+  }
+
+  get read() {
+    return this._read;
+  }
+
+  set read(value) {
+    if (value) {
+      this._read = true;
+    } else { 
+      this._read = false;
+    }
+  }
+
+  get id() {
+    return this._id;
+  }
+
+  set id(value) {
+    this._id = value;
+  }
 }
 
 function addBookToLibrary(event) {
