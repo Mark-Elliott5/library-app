@@ -26,18 +26,6 @@ const pagesRead = document.getElementById('pages-read');
 let myLibrary = [];
 let bookIncrement = 0;
 
-// function Book(title, author, pages, read, id) {
-//   this.title = title;
-//   this.author = author;
-//   this.pages = pages;
-//   if (read) {
-//     this.read = true;
-//   } else {
-//     this.read = false;
-//   }
-//   this.id = id;
-// }
-
 class Book {
 
   constructor(title, author, pages, read, id) {
