@@ -1,30 +1,5 @@
 "use strict"
 
-const form = document.getElementById('book-submission');
-form.addEventListener('submit', addBookToLibrary);
-form.addEventListener('click', (e) => {
-  e.stopPropagation();
-})
-
-const formWrapper = document.getElementById('form-wrapper');
-formWrapper.addEventListener('click', () => {
-  formWrapper.classList.add('hidden');
-})
-
-const newBook = document.getElementById('new-book');
-newBook.addEventListener('click', () => {
-  formWrapper.classList.remove('hidden');
-})
-
-const shelf = document.getElementById('shelf');
-
-const booksRead = document.getElementById('books-read');
-const booksUnread = document.getElementById('books-unread');
-const totalBooks = document.getElementById('total-books');
-const pagesRead = document.getElementById('pages-read');
-
-let myLibrary = [];
-let bookIncrement = 0;
 
 class Book {
 
@@ -81,26 +56,18 @@ class Book {
   }
 }
 
-function checkForm() {
-  const formTitle = document.getElementById('title');
-  const formAuthor = document.getElementById('author');
-  const formPages = document.getElementById('number-of-pages');
-  const formArray = [formTitle, formAuthor, formPages];
-  console.log(formTitle.checkValidity());
-  console.log(`${formTitle.validity.tooShort}`)
-  for (let i = 0; i < formArray.length; i++) {
-    if (!formArray[i].checkValidity()) {
-      formArray[i].setCustomValidity('Something went wrong!')
-      return true;
-    }
-  }
+const inputs = document.getElementsByTagName('input');
+Array.from(inputs).forEach((element) => {element.addEventListener('focusout', 
+  (element) => {checkForm(element.target)})})
+
+function checkForm(element) {
+  element.checkValidity() 
+    ? element.classList = 'valid' 
+    : element.classList = 'invalid';
 }
 
 function addBookToLibrary(event) {
   event.preventDefault();
-  if (checkForm()) {
-    return;
-  }
   const formData = new FormData(event.target);
   const title = formData.get('title');
   const author = formData.get('author');
@@ -206,3 +173,29 @@ function changeReadStatus(e) {
   myLibrary[bookIndex].read = !myLibrary[bookIndex].read;
   shelveBooks();
 }
+
+const form = document.getElementById('book-submission');
+form.addEventListener('submit', addBookToLibrary);
+form.addEventListener('click', (e) => {
+  e.stopPropagation();
+})
+
+const formWrapper = document.getElementById('form-wrapper');
+formWrapper.addEventListener('click', () => {
+  formWrapper.classList.add('hidden');
+})
+
+const newBook = document.getElementById('new-book');
+newBook.addEventListener('click', () => {
+  formWrapper.classList.remove('hidden');
+})
+
+const shelf = document.getElementById('shelf');
+
+const booksRead = document.getElementById('books-read');
+const booksUnread = document.getElementById('books-unread');
+const totalBooks = document.getElementById('total-books');
+const pagesRead = document.getElementById('pages-read');
+
+let myLibrary = [];
+let bookIncrement = 0;

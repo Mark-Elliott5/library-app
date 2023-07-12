@@ -145,3 +145,11 @@ button img {
 .input-wrapper input {
     margin: 0;
 }
+
+.invalid {
+    border: 1px solid red;
+}
+
+.valid {
+    border: 1px solid green;
+}
