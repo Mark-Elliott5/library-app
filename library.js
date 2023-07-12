@@ -81,8 +81,26 @@ class Book {
   }
 }
 
+function checkForm() {
+  const formTitle = document.getElementById('title');
+  const formAuthor = document.getElementById('author');
+  const formPages = document.getElementById('number-of-pages');
+  const formArray = [formTitle, formAuthor, formPages];
+  console.log(formTitle.checkValidity());
+  console.log(`${formTitle.validity.tooShort}`)
+  for (let i = 0; i < formArray.length; i++) {
+    if (!formArray[i].checkValidity()) {
+      formArray[i].setCustomValidity('Something went wrong!')
+      return true;
+    }
+  }
+}
+
 function addBookToLibrary(event) {
   event.preventDefault();
+  if (checkForm()) {
+    return;
+  }
   const formData = new FormData(event.target);
   const title = formData.get('title');
   const author = formData.get('author');
